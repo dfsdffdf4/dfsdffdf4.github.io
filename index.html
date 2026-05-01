@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>暗区突围：无限 - 硬核战术射击游戏</title>
+    <title>吉林农业大学 - 你的未来从这里开始</title>
     <style>
         * {
             margin: 0;
@@ -12,75 +12,96 @@
         }
 
         :root {
-            --primary: #ff6b00;
-            --secondary: #00d4ff;
-            --dark: #0a0a0f;
-            --darker: #050508;
-            --light: #ffffff;
-            --gray: #888899;
+            --primary: #2d5a27;
+            --primary-light: #4a8c3f;
+            --secondary: #f8b500;
+            --dark: #1a1a2e;
+            --light: #f5f5f5;
+            --text: #333;
+            --text-light: #666;
         }
 
         body {
             font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
-            background: var(--dark);
-            color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
         /* 导航栏 */
-        .navbar {
+        nav {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 20px 50px;
+            background: rgba(45, 90, 39, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
-            background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, transparent 100%);
-            transition: background 0.3s;
-        }
-
-        .navbar.scrolled {
-            background: rgba(10, 10, 15, 0.95);
-            backdrop-filter: blur(10px);
+            height: 70px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary);
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
             list-style: none;
+            gap: 30px;
         }
 
         .nav-links a {
-            color: var(--light);
+            color: white;
             text-decoration: none;
-            font-size: 0.95rem;
+            font-weight: 500;
             transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--secondary);
         }
 
         /* 英雄区域 */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(45, 90, 39, 0.85), rgba(26, 26, 46, 0.75)),
+                        url('https://www.jlau.edu.cn/__local/2/0A/C0/8CFF175ADC8460B853295BE12B7_04221094_18351.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            color: white;
             position: relative;
-            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #1a0a00 100%);
             overflow: hidden;
         }
 
@@ -91,375 +112,18 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background:
-                radial-gradient(circle at 20% 50%, rgba(255, 107, 0, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+            background: radial-gradient(circle at 30% 50%, rgba(248, 181, 0, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(74, 140, 63, 0.15) 0%, transparent 50%);
         }
 
         .hero-content {
             position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 5rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, var(--light) 0%, #ccccdd 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero .subtitle {
-            font-size: 2.5rem;
-            font-weight: 300;
-            color: var(--primary);
-            margin-bottom: 30px;
-            animation: fadeInUp 1s ease 0.2s both;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto 40px;
-            animation: fadeInUp 1s ease 0.4s both;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            animation: fadeInUp 1s ease 0.6s both;
-        }
-
-        .btn {
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), #ff8533);
-            color: var(--light);
-            border: none;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--light);
-            border: 2px solid var(--secondary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--secondary);
-            color: var(--dark);
-            transform: translateY(-3px);
-        }
-
-        /* 游戏特色 */
-        .features {
-            padding: 100px 50px;
-            background: var(--darker);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 60px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(255, 107, 0, 0.2);
-        }
-
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 25px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: var(--light);
-        }
-
-        .feature-card p {
-            color: var(--gray);
-            line-height: 1.6;
-        }
-
-        /* 核心玩法 */
-        .gameplay {
-            padding: 100px 50px;
-            background: var(--dark);
-        }
-
-        .gameplay-steps {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .step {
-            flex: 1;
-            min-width: 200px;
-            text-align: center;
-            padding: 30px;
-            position: relative;
-        }
-
-        .step-number {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 20px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .step h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        .step p {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        /* 游戏截图 */
-        .gallery {
-            padding: 100px 50px;
-            background: var(--darker);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .gallery-item {
-            height: 250px;
-            border-radius: 15px;
-            overflow: hidden;
-            position: relative;
-            transition: all 0.4s;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05) translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-
-        .gallery-icon {
-            font-size: 4rem;
-            margin-bottom: 10px;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-        }
-
-        .gallery-label {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--light);
-            z-index: 2;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-        }
-
-        .gallery-sublabel {
-            position: absolute;
-            bottom: 45px;
-            left: 20px;
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.7);
-            z-index: 2;
-        }
-
-        .gallery-item::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60%;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
             z-index: 1;
+            max-width: 900px;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease-out;
         }
 
-        .gallery-item.factory {
-            background: linear-gradient(135deg, #2d1810 0%, #4a2520 30%, #1a0a05 100%);
-        }
-
-        .gallery-item.military {
-            background: linear-gradient(135deg, #0a1a0a 0%, #1a2a1a 30%, #050f05 100%);
-        }
-
-        .gallery-item.city {
-            background: linear-gradient(135deg, #1a1a2e 0%, #2a2a4e 30%, #0a0a1e 100%);
-        }
-
-        .gallery-item.night {
-            background: linear-gradient(135deg, #0a0a15 0%, #15152a 30%, #050510 100%);
-        }
-
-        .gallery-item.indoor {
-            background: linear-gradient(135deg, #2a1a10 0%, #3a2a1a 30%, #1a0a05 100%);
-        }
-
-        .gallery-item.vehicle {
-            background: linear-gradient(135deg, #1a2a1a 0%, #2a3a2a 30%, #0a1a0a 100%);
-        }
-
-        .gallery-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                radial-gradient(circle at 30% 40%, rgba(255,255,255,0.05) 0%, transparent 50%),
-                radial-gradient(circle at 70% 60%, rgba(255,255,255,0.03) 0%, transparent 50%);
-            z-index: 0;
-        }
-
-        .gallery-item .gallery-icon {
-            z-index: 1;
-            transition: transform 0.4s;
-        }
-
-        .gallery-item:hover .gallery-icon {
-            transform: scale(1.2) translateY(-10px);
-        }
-
-        .gallery-item .gallery-label,
-        .gallery-item .gallery-sublabel {
-            transition: transform 0.4s;
-        }
-
-        .gallery-item:hover .gallery-label {
-            transform: translateX(10px);
-        }
-
-        .gallery-item:hover .gallery-sublabel {
-            transform: translateX(10px);
-        }
-
-        /* 数据统计 */
-        .stats {
-            padding: 80px 50px;
-            background: linear-gradient(135deg, var(--primary), #ff8533);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .stat-item h3 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .stat-item p {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        /* 页脚 */
-        .footer {
-            padding: 60px 50px 30px;
-            background: var(--darker);
-            text-align: center;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--gray);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        .copyright {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        /* 动画 */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -471,10 +135,662 @@
             }
         }
 
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+
+        .hero h1 .highlight {
+            color: var(--secondary);
+            position: relative;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            background: #e6a600;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(248, 181, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* 统计数据 */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        /* 通用区域样式 */
+        section {
+            padding: 100px 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .section-header .divider {
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        /* 学校简介 */
+        .about {
+            background: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(45, 90, 39, 0.9));
+            padding: 30px;
+            color: white;
+        }
+
+        .about-image-overlay h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .about-content h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .about-content .highlight-box {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+            margin-top: 20px;
+        }
+
+        /* 校园风光画廊 */
+        .gallery {
+            background: var(--light);
+            padding: 80px 5%;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-item-overlay h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .gallery-item-overlay p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .gallery-item.featured {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-item.featured img {
+            height: 100%;
+        }
+
+        /* 特色专业 */
+        .majors {
+            background: var(--light);
+        }
+
+        .majors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .major-card {
+            background: white;
+            border-radius: 15px;
+            padding: 35px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .major-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .major-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .major-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .major-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .major-card h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .major-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .major-tag {
+            display: inline-block;
+            background: rgba(45, 90, 39, 0.1);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 15px;
+        }
+
+        /* 校园生活 */
+        .campus {
+            background: white;
+        }
+
+        .campus-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--secondary), #ffd700);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 30px rgba(248, 181, 0, 0.3);
+        }
+
+        .feature-item h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .feature-item p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* 就业前景 */
+        .careers {
+            background: linear-gradient(135deg, var(--dark), #16213e);
+            color: white;
+        }
+
+        .careers .section-header h2 {
+            color: white;
+        }
+
+        .careers .section-header p {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .careers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .career-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .career-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-5px);
+        }
+
+        .career-card h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .career-card p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+        }
+
+        .career-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .career-stat {
+            text-align: center;
+        }
+
+        .career-stat .number {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .career-stat .label {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* 招生信息 */
+        .admission {
+            background: var(--light);
+        }
+
+        .admission-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .admission-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .admission-card-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 25px 30px;
+        }
+
+        .admission-card-header h3 {
+            font-size: 1.3rem;
+        }
+
+        .admission-card-body {
+            padding: 30px;
+        }
+
+        .admission-list {
+            list-style: none;
+        }
+
+        .admission-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admission-list li:last-child {
+            border-bottom: none;
+        }
+
+        .admission-list li::before {
+            content: '✓';
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* CTA区域 */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            text-align: center;
+            padding: 80px 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section .btn {
+            background: var(--secondary);
+            color: var(--dark);
+            font-size: 1.2rem;
+            padding: 18px 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section .btn:hover {
+            background: #e6a600;
+            transform: scale(1.05);
+        }
+
+        /* 页脚 */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 5% 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col p,
+        .footer-col a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .stats {
+                gap: 30px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item.featured {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+        }
+
+        /* 滚动动画 */
         .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
         }
 
         .fade-in.visible {
@@ -482,266 +798,423 @@
             transform: translateY(0);
         }
 
-        /* 响应式 */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 15px 20px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .hero .subtitle {
-                font-size: 1.8rem;
-            }
-
-            .features, .gameplay, .gallery, .stats {
-                padding: 60px 20px;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .stat-item h3 {
-                font-size: 2rem;
-            }
+        /* 装饰元素 */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
         }
 
-        /* 粒子效果容器 */
-        .particles {
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* 滚动指示器 */
+        .scroll-indicator {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
         }
 
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--primary);
-            border-radius: 50%;
-            animation: float 6s infinite;
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) translateX(0);
-                opacity: 0;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(100px);
-                opacity: 0;
-            }
+        .scroll-indicator span {
+            display: block;
+            width: 30px;
+            height: 30px;
+            border-bottom: 3px solid white;
+            border-right: 3px solid white;
+            transform: rotate(45deg);
+            opacity: 0.7;
+        }
+
+        /* 图片加载占位符 */
+        .img-placeholder {
+            background: linear-gradient(135deg, #e0e0e0, #f5f5f5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 1.2rem;
         }
     </style>
 </head>
 <body>
     <!-- 导航栏 -->
-    <nav class="navbar" id="navbar">
-        <div class="logo">暗区突围：无限</div>
+    <nav>
+        <a href="#" class="logo">吉林<span>农业大学</span></a>
         <ul class="nav-links">
-            <li><a href="#home">首页</a></li>
-            <li><a href="#features">游戏特色</a></li>
-            <li><a href="#gameplay">核心玩法</a></li>
-            <li><a href="#gallery">游戏截图</a></li>
-            <li><a href="#stats">游戏数据</a></li>
+            <li><a href="#about">学校简介</a></li>
+            <li><a href="#gallery">校园风光</a></li>
+            <li><a href="#majors">特色专业</a></li>
+            <li><a href="#campus">校园生活</a></li>
+            <li><a href="#careers">就业前景</a></li>
+            <li><a href="#admission">招生信息</a></li>
         </ul>
     </nav>
 
     <!-- 英雄区域 -->
-    <section class="hero" id="home">
-        <div class="particles" id="particles"></div>
+    <section class="hero">
         <div class="hero-content">
-            <h1>暗区突围：无限</h1>
-            <div class="subtitle">Arena Breakout: Infinite</div>
-            <p>腾讯魔方工作室倾力打造的硬核战术射击端游，带你体验最真实的战场生存挑战</p>
+            <div class="hero-badge">🌾 吉林省重点大学 · 农业部共建高校</div>
+            <h1>吉林农业大学<br><span class="highlight">你的未来从这里开始</span></h1>
+            <p>始建于1948年，坐落于长春市，以农学为优势，多学科协调发展的高等学府<br>培养知农爱农新型人才，助力乡村振兴国家战略</p>
             <div class="cta-buttons">
-                <a href="#features" class="btn btn-primary">了解更多</a>
-                <a href="https://breakout.qq.com" class="btn btn-secondary" target="_blank">访问官网</a>
+                <a href="#admission" class="btn btn-primary">🎓 了解招生信息</a>
+                <a href="#majors" class="btn btn-secondary">📚 探索专业</a>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">78+</div>
+                    <div class="stat-label">办学历史（年）</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">60+</div>
+                    <div class="stat-label">本科专业</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2万+</div>
+                    <div class="stat-label">在校学生</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">就业率</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- 学校简介 -->
+    <section id="about" class="about">
+        <div class="section-header">
+            <h2>学校简介</h2>
+            <div class="divider"></div>
+            <p>传承红色基因，赓续农大精神</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-image fade-in">
+                <img src="https://www.jlau.edu.cn/__local/8/83/D9/EC0D49985E6361BCEE3DD3AD1F9_81BA2301_26DC2.jpg" alt="吉林农业大学校训石" loading="lazy">
+                <div class="about-image-overlay">
+                    <h3>明德崇智 厚朴笃行</h3>
+                    <p>校训石 — 吉农精神的象征</p>
+                </div>
+            </div>
+            <div class="about-content fade-in">
+                <h3>为什么选择吉林农业大学？</h3>
+                <p>学校坐落于北国春城长春市，校园占地面积广阔，环境优美，是读书治学的理想之地。学校拥有完善的教学科研设施，包括多个国家级、省部级重点实验室和科研平台。</p>
+                <p>作为东北地区农业高等教育的重要基地，学校在菌物科学、人参研究、黑土地保护等领域处于全国领先地位，为国家粮食安全和农业现代化做出了重要贡献。</p>
+                <div class="highlight-box">
+                    <strong>🏆 办学层次：</strong>吉林省重点大学<br>
+                    <strong>📍 地理位置：</strong>吉林省长春市<br>
+                    <strong>🎯 办学定位：</strong>国内一流、国际知名的农业大学
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 游戏特色 -->
-    <section class="features" id="features">
-        <h2 class="section-title fade-in">游戏特色</h2>
-        <div class="features-grid">
-            <div class="feature-card fade-in">
-                <div class="feature-icon">🎯</div>
-                <h3>拟真射击体验</h3>
-                <p>高拟真的枪械系统、真实的弹道物理和伤害模型，让每一次射击都充满紧张感</p>
-            </div>
-            <div class="feature-card fade-in">
-                <div class="feature-icon">🏃</div>
-                <h3>搜刮-撤离玩法</h3>
-                <p>进入暗区搜集珍贵物资，在限定时间内安全撤离，成功带出的战利品归你所有</p>
-            </div>
-            <div class="feature-card fade-in">
-                <div class="feature-icon">💰</div>
-                <h3>深度经济系统</h3>
-                <p>复杂的市场交易和装备经济循环，精明的交易能让你快速积累财富</p>
-            </div>
-            <div class="feature-card fade-in">
-                <div class="feature-icon">🎮</div>
-                <h3>次世代画质</h3>
-                <p>采用虚幻引擎开发，呈现电影级画面表现，沉浸式战场环境令人叹为观止</p>
-            </div>
-            <div class="feature-card fade-in">
-                <div class="feature-icon">👥</div>
-                <h3>PvPvE 模式</h3>
-                <p>既要对抗其他玩家，也要应对AI敌人，包括强大的Boss和游荡者</p>
-            </div>
-            <div class="feature-card fade-in">
-                <div class="feature-icon">🗺️</div>
-                <h3>多样地图场景</h3>
-                <p>丰富的地图设计，从废弃工厂到军事基地，每张地图都有独特的战术策略</p>
-            </div>
+    <!-- 校园风光画廊 -->
+    <section id="gallery" class="gallery">
+        <div class="section-header">
+            <h2>校园风光</h2>
+            <div class="divider"></div>
+            <p>美丽的吉农校园，等你来探索</p>
         </div>
-    </section>
-
-    <!-- 核心玩法 -->
-    <section class="gameplay" id="gameplay">
-        <h2 class="section-title fade-in">核心玩法</h2>
-        <div class="gameplay-steps">
-            <div class="step fade-in">
-                <div class="step-number">1</div>
-                <h3>装备出击</h3>
-                <p>选择你的装备和武器，准备进入危险的暗区</p>
-            </div>
-            <div class="step fade-in">
-                <div class="step-number">2</div>
-                <h3>搜刮物资</h3>
-                <p>在地图中搜索珍贵物资和装备</p>
-            </div>
-            <div class="step fade-in">
-                <div class="step-number">3</div>
-                <h3>战术对抗</h3>
-                <p>与其他玩家和AI敌人展开激烈战斗</p>
-            </div>
-            <div class="step fade-in">
-                <div class="step-number">4</div>
-                <h3>安全撤离</h3>
-                <p>在限定时间内到达撤离点，成功带出战利品</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 游戏截图 -->
-    <section class="gallery" id="gallery">
-        <h2 class="section-title fade-in">游戏截图</h2>
         <div class="gallery-grid">
-            <div class="gallery-item factory fade-in">
-                <div class="gallery-icon">🏭</div>
-                <div class="gallery-sublabel">高拟真工业场景</div>
-                <div class="gallery-label">废弃工厂</div>
+            <div class="gallery-item featured fade-in">
+                <img src="https://www.jlau.edu.cn/__local/2/0A/C0/8CFF175ADC8460B853295BE12B7_04221094_18351.jpg" alt="明德广场" loading="lazy">
+                <div class="gallery-item-overlay">
+                    <h4>明德广场</h4>
+                    <p>学校标志性广场，大型活动举办地</p>
+                </div>
             </div>
-            <div class="gallery-item military fade-in">
-                <div class="gallery-icon">🎖️</div>
-                <div class="gallery-sublabel">军事设施探索</div>
-                <div class="gallery-label">军事基地</div>
+            <div class="gallery-item fade-in">
+                <img src="https://www.jlau.edu.cn/__local/2/F1/0D/313DD2635B7EB379CFF8D70849D_20B5384D_10DC133.jpg" alt="蓝湖凉亭冬景" loading="lazy">
+                <div class="gallery-item-overlay">
+                    <h4>蓝湖凉亭</h4>
+                    <p>校园内的休闲好去处</p>
+                </div>
             </div>
-            <div class="gallery-item city fade-in">
-                <div class="gallery-icon">🏙️</div>
-                <div class="gallery-sublabel">城市巷战体验</div>
-                <div class="gallery-label">城市战场</div>
+            <div class="gallery-item fade-in">
+                <img src="https://www.jlau.edu.cn/__local/E/C0/8D/F8C7FB4AE8080768E19ADB008A8_12BDB06A_10569.jpg" alt="校园建筑" loading="lazy">
+                <div class="gallery-item-overlay">
+                    <h4>教学楼群</h4>
+                    <p>现代化教学设施</p>
+                </div>
             </div>
-            <div class="gallery-item night fade-in">
-                <div class="gallery-icon">🌙</div>
-                <div class="gallery-sublabel">夜视仪作战</div>
-                <div class="gallery-label">夜间行动</div>
+            <div class="gallery-item fade-in">
+                <img src="https://www.jlau.edu.cn/__local/B/1C/A2/E50B66107BDE4E785618DBC86BC_E20BFDA3_6D68.jpg" alt="校园景观" loading="lazy">
+                <div class="gallery-item-overlay">
+                    <h4>校园一景</h4>
+                    <p>四季皆美的人文景观</p>
+                </div>
             </div>
-            <div class="gallery-item indoor fade-in">
-                <div class="gallery-icon">🏢</div>
-                <div class="gallery-sublabel">近距离CQB</div>
-                <div class="gallery-label">室内交火</div>
-            </div>
-            <div class="gallery-item vehicle fade-in">
-                <div class="gallery-icon">🚗</div>
-                <div class="gallery-sublabel">载具战术运用</div>
-                <div class="gallery-label">载具作战</div>
+            <div class="gallery-item fade-in">
+                <img src="https://www.jlau.edu.cn/__local/8/83/D9/EC0D49985E6361BCEE3DD3AD1F9_81BA2301_26DC2.jpg" alt="校训石" loading="lazy">
+                <div class="gallery-item-overlay">
+                    <h4>校训石</h4>
+                    <p>明德崇智 厚朴笃行</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 数据统计 -->
-    <section class="stats" id="stats">
-        <div class="stats-grid">
-            <div class="stat-item fade-in">
-                <h3 id="players">0</h3>
-                <p>全球玩家</p>
+    <!-- 特色专业 -->
+    <section id="majors" class="majors">
+        <div class="section-header">
+            <h2>特色专业</h2>
+            <div class="divider"></div>
+            <p>王牌学科，引领未来发展</p>
+        </div>
+        <div class="majors-grid">
+            <div class="major-card fade-in">
+                <div class="major-icon">🍄</div>
+                <h3>菌物科学与工程</h3>
+                <p>全国首创，菌物学科全国领先。依托李玉院士团队，在食药用菌研究领域享有盛誉，培养菌物产业高端人才。</p>
+                <span class="major-tag">国家级特色</span>
             </div>
-            <div class="stat-item fade-in">
-                <h3 id="maps">0</h3>
-                <p>特色地图</p>
+            <div class="major-card fade-in">
+                <div class="major-icon">🌿</div>
+                <h3>农学</h3>
+                <p>学校传统优势学科，聚焦作物遗传育种、耕作学等领域，为国家粮食安全培养高素质农业科技人才。</p>
+                <span class="major-tag">省级一流</span>
             </div>
-            <div class="stat-item fade-in">
-                <h3 id="weapons">0</h3>
-                <p>武器装备</p>
+            <div class="major-card fade-in">
+                <div class="major-icon">🧪</div>
+                <h3>植物保护</h3>
+                <p>国家级特色专业，在农作物病虫害防治、生物农药研发等方面具有鲜明特色和突出优势。</p>
+                <span class="major-tag">国家级特色</span>
             </div>
-            <div class="stat-item fade-in">
-                <h3 id="matches">0</h3>
-                <p>每日对局</p>
+            <div class="major-card fade-in">
+                <div class="major-icon">🍚</div>
+                <h3>食品科学与工程</h3>
+                <p>聚焦食品安全与营养健康，拥有省级重点实验室，毕业生深受食品龙头企业欢迎。</p>
+                <span class="major-tag">就业热门</span>
+            </div>
+            <div class="major-card fade-in">
+                <div class="major-icon">💊</div>
+                <h3>中药学 / 人参科学</h3>
+                <p>依托吉林人参资源优势，开展人参栽培、加工、药理研究，是全国人参研究的重要基地。</p>
+                <span class="major-tag">特色鲜明</span>
+            </div>
+            <div class="major-card fade-in">
+                <div class="major-icon">🐾</div>
+                <h3>动物医学</h3>
+                <p>培养具备动物疾病诊断、治疗和预防能力的专业人才，就业前景广阔，社会需求量大。</p>
+                <span class="major-tag">社会急需</span>
             </div>
         </div>
+    </section>
+
+    <!-- 校园生活 -->
+    <section id="campus" class="campus">
+        <div class="section-header">
+            <h2>校园生活</h2>
+            <div class="divider"></div>
+            <p>丰富多彩，全面发展</p>
+        </div>
+        <div class="campus-features">
+            <div class="feature-item fade-in">
+                <div class="feature-icon floating">🏠</div>
+                <h3>舒适住宿</h3>
+                <p>现代化学生公寓，配备空调、热水器、独立卫浴，打造温馨的生活空间</p>
+            </div>
+            <div class="feature-item fade-in">
+                <div class="feature-icon floating" style="animation-delay: 0.5s">🍜</div>
+                <h3>美食天堂</h3>
+                <p>多个学生食堂，汇聚东北美食，价格实惠，满足你的味蕾</p>
+            </div>
+            <div class="feature-item fade-in">
+                <div class="feature-icon floating" style="animation-delay: 1s">📚</div>
+                <h3>智慧图书馆</h3>
+                <p>藏书丰富，电子资源齐全，24小时自习室，助力学业进步</p>
+            </div>
+            <div class="feature-item fade-in">
+                <div class="feature-icon floating" style="animation-delay: 1.5s">🏃</div>
+                <h3>运动健身</h3>
+                <p>标准体育场、体育馆、游泳馆、健身房，释放青春活力</p>
+            </div>
+            <div class="feature-item fade-in">
+                <div class="feature-icon floating" style="animation-delay: 2s">🎭</div>
+                <h3>社团活动</h3>
+                <p>100+学生社团，涵盖学术、文艺、体育、公益等领域，丰富课余生活</p>
+            </div>
+            <div class="feature-item fade-in">
+                <div class="feature-icon floating" style="animation-delay: 2.5s">🔬</div>
+                <h3>科研实践</h3>
+                <p>本科生即可进入实验室，参与科研项目，提升创新能力</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 就业前景 -->
+    <section id="careers" class="careers">
+        <div class="section-header">
+            <h2>就业前景</h2>
+            <div class="divider"></div>
+            <p>广阔天地，大有可为</p>
+        </div>
+        <div class="careers-grid">
+            <div class="career-card fade-in">
+                <h3>🌾 农业科技企业</h3>
+                <p>现代农业正经历数字化、智能化转型，农业科技人才需求旺盛。毕业生可从事种子研发、智慧农业、农业物联网等前沿领域。</p>
+                <div class="career-stats">
+                    <div class="career-stat">
+                        <div class="number">30%</div>
+                        <div class="label">年薪增长</div>
+                    </div>
+                    <div class="career-stat">
+                        <div class="number">大量</div>
+                        <div class="label">岗位需求</div>
+                    </div>
+                </div>
+            </div>
+            <div class="career-card fade-in">
+                <h3>🏛️ 政府机关</h3>
+                <p>农业农村局、乡村振兴局、市场监管局等政府部门，每年定向招收农业类专业毕业生，工作稳定，前景光明。</p>
+                <div class="career-stats">
+                    <div class="career-stat">
+                        <div class="number">15%</div>
+                        <div class="label">公务员录取率</div>
+                    </div>
+                    <div class="career-stat">
+                        <div class="number">稳定</div>
+                        <div class="label">职业发展</div>
+                    </div>
+                </div>
+            </div>
+            <div class="career-card fade-in">
+                <h3>🎓 继续深造</h3>
+                <p>学校拥有多个硕士、博士学位授权点，优秀学生可推免至985/211高校读研，或选择出国留学深造。</p>
+                <div class="career-stats">
+                    <div class="career-stat">
+                        <div class="number">35%</div>
+                        <div class="label">考研率</div>
+                    </div>
+                    <div class="career-stat">
+                        <div class="number">多所</div>
+                        <div class="label">合作院校</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 招生信息 -->
+    <section id="admission" class="admission">
+        <div class="section-header">
+            <h2>招生信息</h2>
+            <div class="divider"></div>
+            <p>2026年招生政策</p>
+        </div>
+        <div class="admission-cards">
+            <div class="admission-card fade-in">
+                <div class="admission-card-header">
+                    <h3>📋 报考条件</h3>
+                </div>
+                <div class="admission-card-body">
+                    <ul class="admission-list">
+                        <li>参加全国普通高等学校招生统一考试</li>
+                        <li>高考成绩达到所在省份录取分数线</li>
+                        <li>身体健康，符合专业体检要求</li>
+                        <li>部分专业有选科要求，请查阅招生简章</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="admission-card fade-in">
+                <div class="admission-card-header">
+                    <h3>🎯 录取原则</h3>
+                </div>
+                <div class="admission-card-body">
+                    <ul class="admission-list">
+                        <li>分数优先，遵循志愿</li>
+                        <li>无专业级差</li>
+                        <li>认可各省加分政策</li>
+                        <li>平行志愿投档比例105%以内</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="admission-card fade-in">
+                <div class="admission-card-header">
+                    <h3>💰 奖助政策</h3>
+                </div>
+                <div class="admission-card-body">
+                    <ul class="admission-list">
+                        <li>国家奖学金：8000元/年</li>
+                        <li>国家励志奖学金：5000元/年</li>
+                        <li>国家助学金：2000-4000元/年</li>
+                        <li>校内奖学金、勤工助学岗位</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA区域 -->
+    <section class="cta-section">
+        <h2>🌾 吉林农业大学等你来</h2>
+        <p>加入我们，开启你的农业科技报国之旅！</p>
+        <a href="https://www.jlau.edu.cn" class="btn" target="_blank">🚀 访问官方网站</a>
     </section>
 
     <!-- 页脚 -->
-    <footer class="footer">
-        <div class="footer-links">
-            <a href="https://breakout.qq.com" target="_blank">官方网站</a>
-            <a href="https://store.steampowered.com" target="_blank">Steam商店</a>
-            <a href="https://space.bilibili.com" target="_blank">官方B站</a>
-            <a href="https://weibo.com" target="_blank">官方微博</a>
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>学校地址</h4>
+                <p>吉林省长春市新城大街2888号</p>
+                <p>邮编：130118</p>
+            </div>
+            <div class="footer-col">
+                <h4>联系方式</h4>
+                <p>招生咨询：0431-84532980</p>
+                <p>学校官网：www.jlau.edu.cn</p>
+            </div>
+            <div class="footer-col">
+                <h4>快速链接</h4>
+                <a href="https://zsb.jlau.edu.cn" target="_blank">招生信息网</a>
+                <a href="https://www.jlau.edu.cn/jxky.htm" target="_blank">科学研究</a>
+                <a href="https://www.jlau.edu.cn/xxgk.htm" target="_blank">学校概况</a>
+                <a href="https://www.jlau.edu.cn" target="_blank">学校官网</a>
+            </div>
+            <div class="footer-col">
+                <h4>关注我们</h4>
+                <p>微信公众号：吉林农业大学</p>
+                <p>微博：@吉林农业大学</p>
+                <p>B站：吉林农业大学</p>
+            </div>
         </div>
-        <p class="copyright">© 2026 暗区突围：无限 - 腾讯魔方工作室 | 本站为粉丝制作，非官方页面</p>
+        <div class="footer-bottom">
+            <p>© 2026 吉林农业大学 版权所有 | 明德崇智 厚朴笃行</p>
+        </div>
     </footer>
 
     <script>
-        // 粒子效果
-        function createParticles() {
-            const container = document.getElementById('particles');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
-                container.appendChild(particle);
-            }
-        }
-        createParticles();
-
-        // 导航栏滚动效果
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
         });
 
         // 滚动动画
         const observerOptions = {
+            root: null,
+            rootMargin: '0px',
             threshold: 0.1
         };
 
@@ -757,48 +1230,52 @@
             observer.observe(el);
         });
 
+        // 导航栏滚动效果
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(45, 90, 39, 0.98)';
+                nav.style.boxShadow = '0 2px 30px rgba(0,0,0,0.15)';
+            } else {
+                nav.style.background = 'rgba(45, 90, 39, 0.95)';
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            }
+        });
+
         // 数字动画
-        function animateNumber(elementId, target, suffix = '') {
-            const element = document.getElementById(elementId);
-            let current = 0;
-            const increment = target / 60;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
+        function animateNumbers() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const target = stat.innerText;
+                if (target.includes('+') || target.includes('%')) {
+                    const num = parseInt(target);
+                    let current = 0;
+                    const increment = num / 50;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= num) {
+                            stat.innerText = target;
+                            clearInterval(timer);
+                        } else {
+                            stat.innerText = Math.floor(current) + (target.includes('+') ? '+' : '%');
+                        }
+                    }, 30);
                 }
-                element.textContent = Math.floor(current).toLocaleString() + suffix;
-            }, 16);
+            });
         }
 
-        // 当统计区域可见时开始动画
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateNumber('players', 1000, '万+');
-                    animateNumber('maps', 12, '+');
-                    animateNumber('weapons', 200, '+');
-                    animateNumber('matches', 50, '万+');
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
+        // 页面加载后触发数字动画
+        window.addEventListener('load', () => {
+            setTimeout(animateNumbers, 500);
+        });
 
-        statsObserver.observe(document.querySelector('.stats'));
-
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+        // 图片加载失败处理
+        document.querySelectorAll('img').forEach(img => {
+            img.onerror = function() {
+                this.style.display = 'none';
+                this.parentElement.classList.add('img-placeholder');
+                this.parentElement.innerHTML += '<p>图片加载中...</p>';
+            };
         });
     </script>
 </body>
